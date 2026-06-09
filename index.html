@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <header>
+      <h1>Expense Tracker</h1>
+      <p>Keep an eye on those hard earned pennies</p>
+    </header>
+    
+    <!-- MAIN CONTENT -->
+    <main>
+
+      <!-- Section: Expense List -->
+      <section id="current-expenses">
+        <h3>Current Expenses</h3>
+        <ul id="expense-list">
+
+          <!-- hard coded example cards -->
+           <li class="expense-item">
+            <div class="expense-list-card">
+              <h4>Expense 1 Description</h4>
+              <p>$50</p>
+              <p>Category</p>
+              <p>Due: Tuesday, Sept 24</p>
+              <button>Delete</button>
+            </div>
+           </li>
+
+          <li class="expense-item">
+            <div class="expense-list-card">
+              <h4>Expense 2 Description</h4>
+              <p>$100</p>
+              <p>Category</p>
+              <p>Due: Friday, Aug 12</p>
+              <button>Delete</button>
+            </div>
+           </li>
+
+        </ul>
+
+      </section>
+
+      <!-- Section: Add Expense -->
+      <section id="add-expense">
+        <h3>Add New Expense</h3>
+
+        <form action="#" method="POST">
+          <fieldset>
+            <legend>Expense Deails</legend>
+
+            <p>
+              <label for="add-expense-description">Description:</label><br>
+              <input type="text" name="add-expense-description" placeholder="World Cup Tickets...">
+            </p>
+
+            <p>
+              <label for="add-expense-amount">Amount:</label><br>
+              <input type="number" name="add-expense-amount" min="1" max="20000" step="1" placeholder="$50">
+            </p>
+
+            <p>
+              <label for="add-expense-category">Category:</label><br>
+              <select name="add-expense-category" id="add-expense-category-options">
+                <option value="">-- Select Category --</option>
+                <option value="food-&-drinks">Food & Drinks</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="home-goods">Home Goods</option>
+                <option value="travel">Travel</option>
+                <option value="payments">Payments</option>
+                <option value="other">Other</option>
+              </select>
+            </p>
+
+            <p>
+              <label for="add-expense-date">Due Date:</label><br>
+              <input type="date" name="add-expense-date">
+            </p>
+
+          </fieldset>
+        </form>
+
+      </section> 
+    
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>&copy;2026 Austin Robertson - Brooklyn, NY</p>
+    </footer>
+
+  </body>
+
+</html>
