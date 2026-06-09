@@ -1,119 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense Tracker</title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Expense Tracker</title>
 
-  <body>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+</head>
 
-    <!-- HEADER -->
-    <header>
-      <h1>Expense Tracker</h1>
-      <p>Keep an eye on those hard earned pennies</p>
-    </header>
-    
-    <!-- MAIN CONTENT -->
-    <main>
+<body>
 
-      <!-- Section: Expense List -->
-      <section id="current-expenses">
-        <h3>Current Expenses</h3>
-        <div id="expense-list-container">
+  <!-- HEADER -->
+  <header>
+    <h1>Expense Tracker</h1>
+    <p>Keep an eye on those hard earned pennies</p>
+  </header>
 
-          <ul id="expense-list">
-            <!-- hard coded example cards -->
-             <li class="expense-item">
-              <div class="expense-list-card">
-                <h4>Expense 1 Description</h4>
-                <p>$50</p>
-                <p>Category</p>
-                <p>Due: Tuesday, Sept 24</p>
-                <button>Delete</button>
-              </div>
-             </li>
-            <li class="expense-item">
-              <div class="expense-list-card">
-                <h4>Expense 2 Description</h4>
-                <p>$100</p>
-                <p>Category</p>
-                <p>Due: Friday, Aug 12</p>
-                <button>Delete</button>
-              </div>
-             </li>
-          </ul>
+  <!-- MAIN CONTENT -->
+  <main>
 
-          <div id="current-filter-totals">
-            <h4>Filtered Total: <span id="filtered-total">$320</span></h4>
-          </div>
-          
+    <!-- Section: Expense List -->
+    <section id="current-expenses">
+      <h3>Current Expenses</h3>
+      <div id="expense-list-container">
+
+        <ul id="expense-list">
+          <!-- hard coded example cards -->
+          <li class="expense-item">
+            <div class="expense-list-card">
+              <h4>Knicks tickets</h4>
+              <p>$150</p>
+              <p>Entertainment</p>
+              <p>Due: Tuesday, Sept 24</p>
+              <button>Delete</button>
+            </div>
+          </li>
+          <li class="expense-item">
+            <div class="expense-list-card">
+              <h4>Lavender diffuser</h4>
+              <p>$40</p>
+              <p>Home Goods</p>
+              <p>Due: Friday, Aug 12</p>
+              <button>Delete</button>
+            </div>
+          </li>
+        </ul>
+
+        <div id="current-filter-totals">
+          <h4>Filtered Total: <span id="filtered-total">$320</span></h4>
         </div>
 
-        <div id="running-totals-container"> <!-- positioned to the right of the expense list -->
-          <h3>Overall Total: <span id="overall-total">$470</span></h3>
-          <h4>Category Breakdown</h4>
-          <ul>
-            <li>Food & Drinks: <span id="food-&-drinks-total">$50</span></li>
-            <li>Entertainment: <span id="entertainment-total">$80</span></li>
-            <li>Home Goods: <span id="home-goods-total">$30</span></li>
-            <li>Travel: <span id="travel-total">$200</span></li>
-            <li>Payments: <span id="payments-total">$60</span></li>
-            <li>Other: <span id="other-total">$50</span></li>
-          </ul>
-        </div>
+      </div>
 
-      </section>
+      <div id="running-totals-container"> <!-- positioned to the right of the expense list -->
+        <h3>Overall Total: <span id="overall-total">$470</span></h3>
+        <h4>Category Breakdown</h4>
+        <ul>
+          <li>Food & Drinks: <span id="food-&-drinks-total">$50</span></li>
+          <li>Entertainment: <span id="entertainment-total">$80</span></li>
+          <li>Home Goods: <span id="home-goods-total">$30</span></li>
+          <li>Travel: <span id="travel-total">$200</span></li>
+          <li>Payments: <span id="payments-total">$60</span></li>
+          <li>Other: <span id="other-total">$50</span></li>
+        </ul>
+      </div>
 
-      <!-- Section: Add Expense -->
-      <section id="add-expense">
-        <h3>Add New Expense</h3>
+    </section>
 
-        <form action="#" method="POST">
-          <fieldset>
-            <legend>Expense Deails</legend>
+    <!-- Section: Add Expense -->
+    <section id="add-expense">
+      <h3>Add New Expense</h3>
 
-            <p>
-              <label for="add-expense-description">Description:</label><br>
-              <input type="text" name="add-expense-description" placeholder="World Cup Tickets...">
-            </p>
+      <form action="#" method="POST">
+        <fieldset>
+          <legend>Expense Deails</legend>
 
-            <p>
-              <label for="add-expense-amount">Amount:</label><br>
-              <input type="number" name="add-expense-amount" min="1" max="20000" step="1" placeholder="$50">
-            </p>
+          <p>
+            <label for="add-expense-description">Description:</label><br>
+            <input type="text" name="add-expense-description" placeholder="World Cup Tickets...">
+          </p>
 
-            <p>
-              <label for="add-expense-category">Category:</label><br>
-              <select name="add-expense-category" id="add-expense-category-options">
-                <option value="">-- Select Category --</option>
-                <option value="food-&-drinks">Food & Drinks</option>
-                <option value="entertainment">Entertainment</option>
-                <option value="home-goods">Home Goods</option>
-                <option value="travel">Travel</option>
-                <option value="payments">Payments</option>
-                <option value="other">Other</option>
-              </select>
-            </p>
+          <p>
+            <label for="add-expense-amount">Amount:</label><br>
+            <input type="number" name="add-expense-amount" min="1" max="20000" step="1" placeholder="$50">
+          </p>
 
-            <p>
-              <label for="add-expense-date">Due Date:</label><br>
-              <input type="date" name="add-expense-date">
-            </p>
+          <p>
+            <label for="add-expense-category">Category:</label><br>
+            <select name="add-expense-category" id="add-expense-category-options">
+              <option value="">-- Select Category --</option>
+              <option value="food-&-drinks">Food & Drinks</option>
+              <option value="entertainment">Entertainment</option>
+              <option value="home-goods">Home Goods</option>
+              <option value="travel">Travel</option>
+              <option value="payments">Payments</option>
+              <option value="other">Other</option>
+            </select>
+          </p>
 
-          </fieldset>
-        </form>
+          <p>
+            <label for="add-expense-date">Due Date:</label><br>
+            <input type="date" name="add-expense-date">
+          </p>
 
-      </section> 
-    
-    </main>
+        </fieldset>
+      </form>
 
-    <!-- FOOTER -->
-    <footer>
-      <p>&copy;2026 Austin Robertson - Brooklyn, NY</p>
-    </footer>
+    </section>
 
-  </body>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy;2026 Austin Robertson - Brooklyn, NY</p>
+  </footer>
+
+</body>
 
 </html>
