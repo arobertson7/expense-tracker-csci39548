@@ -21,30 +21,48 @@
       <!-- Section: Expense List -->
       <section id="current-expenses">
         <h3>Current Expenses</h3>
-        <ul id="expense-list">
+        <div id="expense-list-container">
 
-          <!-- hard coded example cards -->
-           <li class="expense-item">
-            <div class="expense-list-card">
-              <h4>Expense 1 Description</h4>
-              <p>$50</p>
-              <p>Category</p>
-              <p>Due: Tuesday, Sept 24</p>
-              <button>Delete</button>
-            </div>
-           </li>
+          <ul id="expense-list">
+            <!-- hard coded example cards -->
+             <li class="expense-item">
+              <div class="expense-list-card">
+                <h4>Expense 1 Description</h4>
+                <p>$50</p>
+                <p>Category</p>
+                <p>Due: Tuesday, Sept 24</p>
+                <button>Delete</button>
+              </div>
+             </li>
+            <li class="expense-item">
+              <div class="expense-list-card">
+                <h4>Expense 2 Description</h4>
+                <p>$100</p>
+                <p>Category</p>
+                <p>Due: Friday, Aug 12</p>
+                <button>Delete</button>
+              </div>
+             </li>
+          </ul>
 
-          <li class="expense-item">
-            <div class="expense-list-card">
-              <h4>Expense 2 Description</h4>
-              <p>$100</p>
-              <p>Category</p>
-              <p>Due: Friday, Aug 12</p>
-              <button>Delete</button>
-            </div>
-           </li>
+          <div id="current-filter-totals">
+            <h4>Filtered Total: <span id="filtered-total">$320</span></h4>
+          </div>
+          
+        </div>
 
-        </ul>
+        <div id="running-totals-container"> <!-- positioned to the right of the expense list -->
+          <h3>Overall Total: <span id="overall-total">$470</span></h3>
+          <h4>Category Breakdown</h4>
+          <ul>
+            <li>Food & Drinks: <span id="food-&-drinks-total">$50</span></li>
+            <li>Entertainment: <span id="entertainment-total">$80</span></li>
+            <li>Home Goods: <span id="home-goods-total">$30</span></li>
+            <li>Travel: <span id="travel-total">$200</span></li>
+            <li>Payments: <span id="payments-total">$60</span></li>
+            <li>Other: <span id="other-total">$50</span></li>
+          </ul>
+        </div>
 
       </section>
 
