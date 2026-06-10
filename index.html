@@ -30,6 +30,56 @@
       <h3>Current Expenses</h3>
       <div id="expense-list-container">
 
+        <div id="filters-container">
+          <div class="filter-group">
+            <label for="sort-by">Sort By</label>
+            <select name="sort-by" id="sort-by">
+              <option value="">Any</option>
+              <option value="amount-desc">Amount &darr;</option>
+              <option value="amount-asc">Amount &uarr;</option>
+              <option value="date-earliest">Date (Earliest)</option>
+              <option value="date-latest">Date (Latest)</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>Filter by Category</label>
+            <div class="dropdown" id="category-dropdown">
+              <button type="button" class="dropdown-trigger" id="filter-category-trigger" aria-haspopup="listbox"
+                aria-expanded="false">
+                <span class="dropdown-trigger-text">All Categories</span>
+                <span class="dropdown-arrow">&#x25BC;</span>
+              </button>
+              <div class="dropdown-menu" role="listbox">
+                <label class="dropdown-item">
+                  <input type="checkbox" value="food-&-drinks" class="category-checkbox">
+                  <span>Food & Drinks</span>
+                </label>
+                <label class="dropdown-item">
+                  <input type="checkbox" value="entertainment" class="category-checkbox">
+                  <span>Entertainment</span>
+                </label>
+                <label class="dropdown-item">
+                  <input type="checkbox" value="home-goods" class="category-checkbox">
+                  <span>Home Goods</span>
+                </label>
+                <label class="dropdown-item">
+                  <input type="checkbox" value="travel" class="category-checkbox">
+                  <span>Travel</span>
+                </label>
+                <label class="dropdown-item">
+                  <input type="checkbox" value="payments" class="category-checkbox">
+                  <span>Payments</span>
+                </label>
+                <label class="dropdown-item">
+                  <input type="checkbox" value="other" class="category-checkbox">
+                  <span>Other</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <ul id="expense-list">
           <!-- hard coded example cards -->
           <li class="expense-item">
@@ -79,11 +129,11 @@
 
       <form action="#" method="POST">
         <fieldset>
-          <legend>Expense Deails</legend>
+          <legend>Expense Details</legend>
 
           <p>
             <label for="add-expense-description">Description:</label><br>
-            <input type="text" name="add-expense-description" placeholder="World Cup Tickets...">
+            <input type="text" name="add-expense-description" maxlength="25" placeholder="World Cup Tickets...">
           </p>
 
           <p>
@@ -121,6 +171,7 @@
     <p>&copy;2026 Austin Robertson - Brooklyn, NY</p>
   </footer>
 
+  <script src="./script.js"></script>
 </body>
 
 </html>
