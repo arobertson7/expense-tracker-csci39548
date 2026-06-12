@@ -358,4 +358,10 @@ function getCategoryTotal(category) {
 **************************** */
 
 const expense_tracker = new ExpenseTracker();
-expense_tracker.addExpense("books", 110, "entertainment", new Date());
+// dummy data
+expense_tracker.addExpense("Car payment", 200, "payments", new Date("2026-07-1"));
+expense_tracker.addExpense("Groceries", 60, "food-&-drinks", new Date("2026-06-12"));
+expense_tracker.addExpense("Dinner with friend", 20, "food-&-drinks", new Date("2026-06-22"));
+expense_tracker.addExpense("New lamp", 30, "home-goods", new Date("2026-06-14"));
+expense_tracker.addExpense("Knicks tickets", 6000, "entertainment", new Date());
+
