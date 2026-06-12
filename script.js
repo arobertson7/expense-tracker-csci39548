@@ -42,6 +42,7 @@ function render() {
 
   const filtered_expense_list = getFilteredExpenseList();
   let filtered_total = 0;
+  let expense_index = 1;
   for (const expense of filtered_expense_list) {
     const list_item_el = document.createElement('li');
     list_item_el.classList.add('expense-item');
@@ -49,6 +50,10 @@ function render() {
 
     const card_el = document.createElement('div');
     card_el.classList.add('expense-list-card');
+
+    const index_badge = document.createElement('span');
+    index_badge.classList.add('expense-index');
+    index_badge.textContent = expense_index;
 
     const card_header = document.createElement('h4');
     card_header.textContent = expense.description;
@@ -68,6 +73,7 @@ function render() {
       expense_tracker.removeExpense(expense.id);
     });
 
+    card_el.appendChild(index_badge);
     card_el.appendChild(card_header);
     card_el.appendChild(card_amount);
     card_el.appendChild(card_category);
@@ -79,6 +85,7 @@ function render() {
     expense_list_el.appendChild(list_item_el);
 
     filtered_total += expense.amount;
+    expense_index++;
   }
 
   let filter_applied = false;
