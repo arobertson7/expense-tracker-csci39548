@@ -109,15 +109,15 @@
       </div>
 
       <div id="running-totals-container"> <!-- positioned to the right of the expense list -->
-        <h3>Overall Total: <span id="overall-total">$470</span></h3>
+        <h3>Overall Total: <span id="overall-total">$0</span></h3>
         <h4>Category Breakdown</h4>
         <ul>
-          <li>Food & Drinks: <span id="food-&-drinks-total">$50</span></li>
-          <li>Entertainment: <span id="entertainment-total">$80</span></li>
-          <li>Home Goods: <span id="home-goods-total">$30</span></li>
-          <li>Travel: <span id="travel-total">$200</span></li>
-          <li>Payments: <span id="payments-total">$60</span></li>
-          <li>Other: <span id="other-total">$50</span></li>
+          <li>Food & Drinks: <span id="food-&-drinks-total">$0</span></li>
+          <li>Entertainment: <span id="entertainment-total">$0</span></li>
+          <li>Home Goods: <span id="home-goods-total">$0</span></li>
+          <li>Travel: <span id="travel-total">$0</span></li>
+          <li>Payments: <span id="payments-total">$0</span></li>
+          <li>Other: <span id="other-total">$0</span></li>
         </ul>
       </div>
 
@@ -139,7 +139,7 @@
           <p>
             <!-- type="text" to display currency formatting -->
             <label for="add-expense-amount">Amount:</label><br>
-            <input type="text" inputmode="decimal" name="add-expense-amount" id="add-expense-amount" min="1" max="20000" step="1" placeholder="$50">
+            <input type="text" inputmode="decimal" name="add-expense-amount" id="add-expense-amount" maxlength=18 placeholder="$50">
           </p>
 
           <p>
