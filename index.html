@@ -127,18 +127,19 @@
     <section id="add-expense">
       <h3>Add New Expense</h3>
 
-      <form action="#" method="POST">
+      <form action="#" method="POST" id="add-expense-form">
         <fieldset>
           <legend>Expense Details</legend>
 
           <p>
             <label for="add-expense-description">Description:</label><br>
-            <input type="text" name="add-expense-description" maxlength="25" placeholder="World Cup Tickets...">
+            <input type="text" name="add-expense-description" id="add-expense-description" maxlength="25" placeholder="World Cup Tickets...">
           </p>
 
           <p>
+            <!-- type="text" to display currency formatting -->
             <label for="add-expense-amount">Amount:</label><br>
-            <input type="number" name="add-expense-amount" min="1" max="20000" step="1" placeholder="$50">
+            <input type="text" inputmode="decimal" name="add-expense-amount" id="add-expense-amount" min="1" max="20000" step="1" placeholder="$50">
           </p>
 
           <p>
@@ -156,10 +157,13 @@
 
           <p>
             <label for="add-expense-date">Due Date:</label><br>
-            <input type="date" name="add-expense-date">
+            <input type="date" name="add-expense-date" id="add-expense-date">
           </p>
 
         </fieldset>
+
+        <button type="button" id="add-expense-button">Add</button>
+
       </form>
 
     </section>
