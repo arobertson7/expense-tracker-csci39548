@@ -1,3 +1,7 @@
+/***********************
+  Data Models
+********************** */
+
 class Expense {
   constructor(id, description, amount, category, date) {
     this.id = id;
@@ -27,6 +31,9 @@ class ExpenseTracker {
   }
 }
 
+/***********************
+  DOM Rendering
+********************** */
 
 function render() {
   // RENDER EXPENSE LIST & FILTERED TOTAL
@@ -75,19 +82,24 @@ function render() {
 
   const filtered_total_el = document.getElementById('filtered-total');
   filtered_total_el.textContent = "$" + getFormattedAmount(filtered_total);
+
+  // RENDER OVERALL TOTAL & CATEGORY TOTALS
+  const overall_total_el = document.getElementById('overall-total');
+  const food_and_drinks_el = document.getElementById('food-&-drinks-total');
+  const entertainment_el = document.getElementById('entertainment-total');
+  const home_goods_el = document.getElementById('home-goods-total');
+  const travel_el = document.getElementById('travel-total');
+  const payments_el = document.getElementById('payments-total');
+  const other_el = document.getElementById('other-total');
+
+  overall_total_el.textContent = "$" + getFormattedAmount(getCategoryTotal(""));
+  food_and_drinks_el.textContent = "$" + getFormattedAmount(getCategoryTotal("food-&-drinks"));
+  entertainment_el.textContent = "$" + getFormattedAmount(getCategoryTotal("entertainment"));
+  home_goods_el.textContent = "$" + getFormattedAmount(getCategoryTotal("home-goods"));
+  travel_el.textContent = "$" + getFormattedAmount(getCategoryTotal("travel"));
+  payments_el.textContent = "$" + getFormattedAmount(getCategoryTotal("payments"));
+  other_el.textContent = "$" + getFormattedAmount(getCategoryTotal("other"));
 }
-
-
-// 3. render
-
-
-
-
-
-
-
-
-
 
 /************************************************************************************
   Event Listener Initializations (Drop down checkbox menu, Add Expense Button, etc.)
@@ -257,9 +269,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-/******************************************************************
+/*****************************
   Helper functions
-***************************************************************** */
+**************************** */
 
 // Input: Number | Output: String | Adds commas and decimal as necessary
 function getFormattedAmount(amount) {
@@ -268,11 +280,19 @@ function getFormattedAmount(amount) {
   return amount.toLocaleString('en-US', decimal_precision);
 }
 
+function getCategoryTotal(category) {
+  const expenses = expense_tracker.expense_list;
+  if (category === "") {
+    return expenses.reduce((acc, expense) => acc + expense.amount, 0);
+  }
+  return expenses.filter((expense) => expense.category === category)
+                 .reduce((acc, expense) => acc + expense.amount, 0);
 
+}
 
+/*****************************
+  Global Variables
+**************************** */
 
-
-
-// Global Expense Tracker
 const expense_tracker = new ExpenseTracker();
-expense_tracker.addExpense("books", 110, "Entertainment", new Date());
+expense_tracker.addExpense("books", 110, "entertainment", new Date());
