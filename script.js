@@ -81,6 +81,13 @@ function render() {
     filtered_total += expense.amount;
   }
 
+  let filter_applied = false;
+  const checkboxes = document.getElementById('category-dropdown').querySelectorAll('.category-checkbox');
+  checkboxes.forEach((cb) => filter_applied = (filter_applied || cb.checked));
+
+  const total_header = document.getElementById('current-filter-totals').querySelector('h4');
+  total_header.firstChild.textContent = filter_applied ? "Filtered Total: " : "Total: ";
+
   const filtered_total_el = document.getElementById('filtered-total');
   filtered_total_el.textContent = "$" + getFormattedAmount(filtered_total);
 
@@ -93,7 +100,7 @@ function render() {
   const payments_el = document.getElementById('payments-total');
   const other_el = document.getElementById('other-total');
 
-  overall_total_el.textContent = "$" + getFormattedAmount(getCategoryTotal(""));
+  overall_total_el.textContent = "$" + getFormattedAmount(getCategoryTotal("all"));
   food_and_drinks_el.textContent = "$" + getFormattedAmount(getCategoryTotal("food-&-drinks"));
   entertainment_el.textContent = "$" + getFormattedAmount(getCategoryTotal("entertainment"));
   home_goods_el.textContent = "$" + getFormattedAmount(getCategoryTotal("home-goods"));
@@ -319,7 +326,7 @@ function getFormattedAmount(amount) {
 
 function getCategoryTotal(category) {
   const expenses = expense_tracker.expense_list;
-  if (category === "") {
+  if (category === "all") {
     return expenses.reduce((acc, expense) => acc + expense.amount, 0);
   }
   return expenses.filter((expense) => expense.category === category)
