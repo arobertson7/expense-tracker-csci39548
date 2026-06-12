@@ -1,3 +1,7 @@
+/***********************
+  Data Models
+********************** */
+
 class Expense {
   constructor(id, description, amount, category, date) {
     this.id = id;
@@ -27,6 +31,9 @@ class ExpenseTracker {
   }
 }
 
+/***********************
+  DOM Rendering
+********************** */
 
 function render() {
   // RENDER EXPENSE LIST & FILTERED TOTAL
@@ -76,18 +83,6 @@ function render() {
   const filtered_total_el = document.getElementById('filtered-total');
   filtered_total_el.textContent = "$" + getFormattedAmount(filtered_total);
 }
-
-
-// 3. render
-
-
-
-
-
-
-
-
-
 
 /************************************************************************************
   Event Listener Initializations (Drop down checkbox menu, Add Expense Button, etc.)
@@ -257,9 +252,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-/******************************************************************
+/*****************************
   Helper functions
-***************************************************************** */
+**************************** */
 
 // Input: Number | Output: String | Adds commas and decimal as necessary
 function getFormattedAmount(amount) {
@@ -268,11 +263,9 @@ function getFormattedAmount(amount) {
   return amount.toLocaleString('en-US', decimal_precision);
 }
 
+/*****************************
+  Global Variables
+**************************** */
 
-
-
-
-
-// Global Expense Tracker
 const expense_tracker = new ExpenseTracker();
 expense_tracker.addExpense("books", 110, "Entertainment", new Date());
