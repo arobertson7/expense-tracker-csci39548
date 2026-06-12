@@ -39,9 +39,10 @@ function render() {
   // RENDER EXPENSE LIST & FILTERED TOTAL
   const expense_list_el = document.getElementById('expense-list');
   expense_list_el.replaceChildren(); // clear all children for refresh
-  let filtered_total = 0;
 
-  for (const expense of expense_tracker.expense_list) {
+  const filtered_expense_list = getFilteredExpenseList();
+  let filtered_total = 0;
+  for (const expense of filtered_expense_list) {
     const list_item_el = document.createElement('li');
     list_item_el.classList.add('expense-item');
     list_item_el.setAttribute('data-expense-id', String(expense.id));
@@ -99,6 +100,35 @@ function render() {
   travel_el.textContent = "$" + getFormattedAmount(getCategoryTotal("travel"));
   payments_el.textContent = "$" + getFormattedAmount(getCategoryTotal("payments"));
   other_el.textContent = "$" + getFormattedAmount(getCategoryTotal("other"));
+}
+
+function getFilteredExpenseList() {
+  let expenses = expense_tracker.expense_list;
+  // 1. Filter by category
+  const dropdown = document.getElementById('category-dropdown');
+  const checkboxes = dropdown.querySelectorAll('.category-checkbox');
+  const selected_categories = new Set();
+  checkboxes.forEach((cb) => {
+    if (cb.checked) {
+      selected_categories.add(cb.value);
+    }
+  });
+  if (selected_categories.size !== 0) { // if 0 -> All Categories
+    expenses = expenses.filter((expense) => selected_categories.has(expense.category));
+  }
+  // 2. Sort
+  const sort_by_el = document.getElementById('sort-by');
+  const sort_selection = sort_by_el.value;
+  if (sort_selection === "amount-desc") {
+    expenses.sort((a, b) => b.amount - a.amount);
+  } else if (sort_selection === "amount-asc") {
+    expenses.sort((a, b) => a.amount - b.amount);
+  } else if (sort_selection === "date-earliest") {
+    expenses.sort((a, b) => a.date - b.date);
+  } else if (sort_selection === "date-latest") {
+    expenses.sort((a, b) => b.date - a.date);
+  }
+  return expenses; // no sort applied
 }
 
 /************************************************************************************
@@ -179,10 +209,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // Bind change events to checkboxes
   checkboxes.forEach((cb) => {
     cb.addEventListener('change', updateTriggerText);
+    cb.addEventListener('change', render);
   });
 
   // Initial update
   updateTriggerText();
+
+  // Bind change events to sort-by (render() handles the sort)
+  const sort_by_el = document.getElementById('sort-by');
+  sort_by_el.addEventListener('change', () => {
+    render();
+  });
 
   // *** ADD EXPENSE BUTTON LOGIC ***
   const add_button = document.getElementById('add-expense-button');
