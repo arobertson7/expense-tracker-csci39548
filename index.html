@@ -16,6 +16,21 @@
 
 <body>
 
+  <!-- THEME TOGGLE BUTTON -->
+  <button id="theme-toggle" aria-label="Toggle Theme" class="theme-toggle-btn">
+    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="4"></circle>
+      <path
+        d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41">
+      </path>
+    </svg>
+    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+    </svg>
+  </button>
+
   <!-- HEADER -->
   <header>
     <h1>Expense Tracker</h1>
@@ -103,7 +118,7 @@
         </ul>
 
         <div id="current-filter-totals">
-          <h4>Filtered Total: <span id="filtered-total">$320</span></h4>
+          <h4>Total: <span id="filtered-total">$0</span></h4>
         </div>
 
       </div>
@@ -133,13 +148,15 @@
 
           <p>
             <label for="add-expense-description">Description:</label><br>
-            <input type="text" name="add-expense-description" id="add-expense-description" maxlength="25" placeholder="World Cup Tickets...">
+            <input type="text" name="add-expense-description" id="add-expense-description" maxlength="25"
+              placeholder="World Cup Tickets...">
           </p>
 
           <p>
             <!-- type="text" to display currency formatting -->
             <label for="add-expense-amount">Amount:</label><br>
-            <input type="text" inputmode="decimal" name="add-expense-amount" id="add-expense-amount" maxlength=18 placeholder="$50">
+            <input type="text" inputmode="decimal" name="add-expense-amount" id="add-expense-amount" maxlength=18
+              placeholder="$50">
           </p>
 
           <p>

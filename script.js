@@ -81,6 +81,13 @@ function render() {
     filtered_total += expense.amount;
   }
 
+  let filter_applied = false;
+  const checkboxes = document.getElementById('category-dropdown').querySelectorAll('.category-checkbox');
+  checkboxes.forEach((cb) => filter_applied = (filter_applied || cb.checked));
+
+  const total_header = document.getElementById('current-filter-totals').querySelector('h4');
+  total_header.firstChild.textContent = filter_applied ? "Filtered Total: " : "Total: ";
+
   const filtered_total_el = document.getElementById('filtered-total');
   filtered_total_el.textContent = "$" + getFormattedAmount(filtered_total);
 
@@ -93,7 +100,7 @@ function render() {
   const payments_el = document.getElementById('payments-total');
   const other_el = document.getElementById('other-total');
 
-  overall_total_el.textContent = "$" + getFormattedAmount(getCategoryTotal(""));
+  overall_total_el.textContent = "$" + getFormattedAmount(getCategoryTotal("all"));
   food_and_drinks_el.textContent = "$" + getFormattedAmount(getCategoryTotal("food-&-drinks"));
   entertainment_el.textContent = "$" + getFormattedAmount(getCategoryTotal("entertainment"));
   home_goods_el.textContent = "$" + getFormattedAmount(getCategoryTotal("home-goods"));
@@ -136,6 +143,18 @@ function getFilteredExpenseList() {
 ********************************************************************************** */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // *** THEME TOGGLE LOGIC ***
+  const theme_toggle_button = document.getElementById('theme-toggle');
+
+  theme_toggle_button.addEventListener('click', () => {
+    const is_light = document.documentElement.getAttribute('data-theme') === 'light';
+    if (is_light) {
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  });
+
   // *** LIST FILTERS LOGIC ***
   const dropdown = document.getElementById('category-dropdown');
   const trigger = document.getElementById('filter-category-trigger');
@@ -253,16 +272,16 @@ document.addEventListener('DOMContentLoaded', () => {
   amount_input.addEventListener('input', (e) => {
     let cursorPosition = amount_input.selectionStart;
     let originalLength = amount_input.value.length;
-    
+
     // Clean the input: Remove everything except digits and the FIRST period
     let val = amount_input.value.replace(/[^\d.]/g, "");
-    
+
     // Enforce only one decimal point
     const periodIndex = val.indexOf('.');
     if (periodIndex !== -1) {
       // Split by first period, remove any subsequent periods from the rest of the string
       val = val.substring(0, periodIndex + 1) + val.substring(periodIndex + 1).replace(/\./g, "");
-      
+
       // Enforce max 2 decimal places (truncate anything after dd)
       const parts = val.split('.');
       if (parts[1].length > 2) {
@@ -283,10 +302,10 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       const parts = val.split('.');
       const integerPart = parseInt(parts[0], 10) || 0;
-      
+
       // Format the integer side with commas
       const formattedInteger = integerPart.toLocaleString('en-US');
-      
+
       // Reconstruct with the decimal side if it exists
       if (parts.length > 1) {
         formattedValue = `$${formattedInteger}.${parts[1]}`;
@@ -313,17 +332,17 @@ document.addEventListener('DOMContentLoaded', () => {
 // Input: Number | Output: String | Adds commas and decimal as necessary
 function getFormattedAmount(amount) {
   const decimal_precision = Number.isInteger(amount) ? { minimumFractionDigits: 0, maximumFractionDigits: 0 }
-                                                     : { minimumFractionDigits: 2, maximumFractionDigits: 2 };
+    : { minimumFractionDigits: 2, maximumFractionDigits: 2 };
   return amount.toLocaleString('en-US', decimal_precision);
 }
 
 function getCategoryTotal(category) {
   const expenses = expense_tracker.expense_list;
-  if (category === "") {
+  if (category === "all") {
     return expenses.reduce((acc, expense) => acc + expense.amount, 0);
   }
   return expenses.filter((expense) => expense.category === category)
-                 .reduce((acc, expense) => acc + expense.amount, 0);
+    .reduce((acc, expense) => acc + expense.amount, 0);
 
 }
 
