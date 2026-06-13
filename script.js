@@ -117,6 +117,10 @@ function render() {
   travel_el.textContent = "$" + getFormattedAmount(getCategoryTotal("travel"));
   payments_el.textContent = "$" + getFormattedAmount(getCategoryTotal("payments"));
   other_el.textContent = "$" + getFormattedAmount(getCategoryTotal("other"));
+
+  if (selected_currency === "EUR") {
+    renderAmountsInEuros(cached_conversion_rate);
+  }
 }
 
 function getFilteredExpenseList() {
@@ -346,36 +350,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // Convert to EUR
     const conversion_rate_data = await fetchConversionRate();
-    if (conversion_rate_data.length === 0) { // error occurred during fetch
+    if (conversion_rate_data.length === 0 // error occurred during fetch
+        || conversion_rate_data.rates === undefined // in case of missing field
+        || conversion_rate_data.rates.EUR === undefined) {
 
       return;
     }
     const conversion_rate = Number(conversion_rate_data.rates.EUR);
-
-    // Update expense list cards
-    const expense_card_amount_els = document.querySelectorAll('.individual-expense-amount');
-    console.log(expense_card_amount_els);
-    expense_card_amount_els.forEach((amount_el) => {
-      amount_el.textContent = convertDollarToEuroString(amount_el.textContent, conversion_rate);
-    });
-    // Update Filtered Total
-    const filtered_total = document.getElementById('filtered-total');
-    filtered_total.textContent = convertDollarToEuroString(filtered_total.textContent, conversion_rate);
-    // Update Overall and Category Totals
-    const overall_total_el = document.getElementById('overall-total');
-    const food_and_drinks_el = document.getElementById('food-&-drinks-total');
-    const entertainment_el = document.getElementById('entertainment-total');
-    const home_goods_el = document.getElementById('home-goods-total');
-    const travel_el = document.getElementById('travel-total');
-    const payments_el = document.getElementById('payments-total');
-    const other_el = document.getElementById('other-total');
-    overall_total_el.textContent = convertDollarToEuroString(overall_total_el.textContent, conversion_rate);
-    food_and_drinks_el.textContent = convertDollarToEuroString(food_and_drinks_el.textContent, conversion_rate);
-    entertainment_el.textContent = convertDollarToEuroString(entertainment_el.textContent, conversion_rate);
-    home_goods_el.textContent = convertDollarToEuroString(home_goods_el.textContent, conversion_rate);
-    travel_el.textContent = convertDollarToEuroString(travel_el.textContent, conversion_rate);
-    payments_el.textContent = convertDollarToEuroString(payments_el.textContent, conversion_rate);
-    other_el.textContent = convertDollarToEuroString(other_el.textContent, conversion_rate);
+    cached_conversion_rate = conversion_rate;
+    renderAmountsInEuros(conversion_rate);
 
     // Toggle button label
     convert_button.querySelector('.btn-text').textContent = "Convert to USD";
@@ -424,6 +407,32 @@ function convertDollarToEuroString(dollar_str, conversion_rate) {
   return formatted_amount;
 }
 
+function renderAmountsInEuros(conversion_rate) {
+  // Update expense list cards
+  const expense_card_amount_els = document.querySelectorAll('.individual-expense-amount');
+  expense_card_amount_els.forEach((amount_el) => {
+    amount_el.textContent = convertDollarToEuroString(amount_el.textContent, conversion_rate);
+  });
+  // Update Filtered Total
+  const filtered_total = document.getElementById('filtered-total');
+  filtered_total.textContent = convertDollarToEuroString(filtered_total.textContent, conversion_rate);
+  // Update Overall and Category Totals
+  const overall_total_el = document.getElementById('overall-total');
+  const food_and_drinks_el = document.getElementById('food-&-drinks-total');
+  const entertainment_el = document.getElementById('entertainment-total');
+  const home_goods_el = document.getElementById('home-goods-total');
+  const travel_el = document.getElementById('travel-total');
+  const payments_el = document.getElementById('payments-total');
+  const other_el = document.getElementById('other-total');
+  overall_total_el.textContent = convertDollarToEuroString(overall_total_el.textContent, conversion_rate);
+  food_and_drinks_el.textContent = convertDollarToEuroString(food_and_drinks_el.textContent, conversion_rate);
+  entertainment_el.textContent = convertDollarToEuroString(entertainment_el.textContent, conversion_rate);
+  home_goods_el.textContent = convertDollarToEuroString(home_goods_el.textContent, conversion_rate);
+  travel_el.textContent = convertDollarToEuroString(travel_el.textContent, conversion_rate);
+  payments_el.textContent = convertDollarToEuroString(payments_el.textContent, conversion_rate);
+  other_el.textContent = convertDollarToEuroString(other_el.textContent, conversion_rate);
+}
+
 /*****************************
   Global Variables
 **************************** */
@@ -431,6 +440,7 @@ function convertDollarToEuroString(dollar_str, conversion_rate) {
 const STORAGE_KEY = "expense_list";
 const CONVERSION_API_URL = "https://api.exchangerate-api.com/v4/latest/USD";
 let selected_currency = "USD";
+let cached_conversion_rate = 0; // only used after a successful fetch for conversion rate (where it's given a value)
 
 const stored_expenses_JSON = localStorage.getItem(STORAGE_KEY);
 const parsed_expenses_array = stored_expenses_JSON ? JSON.parse(stored_expenses_JSON) : [];
