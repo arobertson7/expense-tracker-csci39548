@@ -629,14 +629,30 @@ section h3::after {
   transform: translateY(0) scale(0.98);
 }
 
-.convert-eur-btn .euro-icon {
+.convert-eur-btn .euro-icon,
+.convert-eur-btn .usd-icon {
   width: 14px;
   height: 14px;
   transition: transform 0.25s ease;
 }
 
-.convert-eur-btn:hover .euro-icon {
+.convert-eur-btn:hover .euro-icon,
+.convert-eur-btn:hover .usd-icon {
   transform: rotate(15deg) scale(1.1);
+}
+
+/* Icon visibility toggle */
+.convert-eur-btn[data-currency="EUR"] .euro-icon {
+  display: inline-block;
+}
+.convert-eur-btn[data-currency="EUR"] .usd-icon {
+  display: none;
+}
+.convert-eur-btn[data-currency="USD"] .euro-icon {
+  display: none;
+}
+.convert-eur-btn[data-currency="USD"] .usd-icon {
+  display: inline-block;
 }
 
 @media (max-width: 400px) {

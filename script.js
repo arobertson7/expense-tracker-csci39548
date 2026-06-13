@@ -340,13 +340,14 @@ document.addEventListener('DOMContentLoaded', () => {
     selected_currency = (selected_currency === "USD") ? "EUR" : "USD";
     if (selected_currency === "USD") {
       render(); // defaults to USD
-      convert_button.textContent = "Convert to EUR";
+      convert_button.querySelector('.btn-text').textContent = "Convert to EUR";
+      convert_button.setAttribute('data-currency', 'EUR');
       return;
     }
     // Convert to EUR
     const conversion_rate_data = await fetchConversionRate();
     if (conversion_rate_data.length === 0) { // error occurred during fetch
-      
+
       return;
     }
     const conversion_rate = Number(conversion_rate_data.rates.EUR);
@@ -377,7 +378,8 @@ document.addEventListener('DOMContentLoaded', () => {
     other_el.textContent = convertDollarToEuroString(other_el.textContent, conversion_rate);
 
     // Toggle button label
-    convert_button.textContent = "Convert to USD";
+    convert_button.querySelector('.btn-text').textContent = "Convert to USD";
+    convert_button.setAttribute('data-currency', 'USD');
   });
 
 });
@@ -404,22 +406,22 @@ function getCategoryTotal(category) {
 
 async function fetchConversionRate() {
   try {
-      const response = await fetch(CONVERSION_API_URL);
-      if (!response.ok) {
-        throw new Error("HTTP " + response.status);
-      }
-      const data = await response.json();
-      return data;
+    const response = await fetch(CONVERSION_API_URL);
+    if (!response.ok) {
+      throw new Error("HTTP " + response.status);
+    }
+    const data = await response.json();
+    return data;
   } catch (error) {
-      console.error("Error fetching conversion rate: ", error.message);
-      return [];
+    console.error("Error fetching conversion rate: ", error.message);
+    return [];
   }
 }
 
 function convertDollarToEuroString(dollar_str, conversion_rate) {
-    const cleaned_and_converted = conversion_rate * Number(dollar_str.replace(/[^\d.]/g, ""));
-    const formatted_amount = "€" + getFormattedAmount(cleaned_and_converted);
-    return formatted_amount;
+  const cleaned_and_converted = conversion_rate * Number(dollar_str.replace(/[^\d.]/g, ""));
+  const formatted_amount = "€" + getFormattedAmount(cleaned_and_converted);
+  return formatted_amount;
 }
 
 /*****************************
