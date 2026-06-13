@@ -1,51 +1,51 @@
 /* Custom variables for a gorgeous modern twilight slate/indigo theme */
 :root {
-  /* Twilight Mode Colors (Default Theme) */
-  --bg-primary: #1f213a;       /* Warm twilight slate/indigo background */
-  --bg-secondary: #272a4b;     /* Slightly darker twilight indigo */
-  --bg-card: rgba(45, 49, 84, 0.6); /* Translucent twilight indigo card */
-  --border-color: rgba(255, 255, 255, 0.1); /* Soft white border */
-  --border-focus: #818cf8;     /* Bright indigo focus border */
+  /* Deep Sapphire Blue Mode Colors (Default Theme) - High Contrast */
+  --bg-primary: #060913;       /* Deeper cyber black-blue for contrast */
+  --bg-secondary: #0e1322;     /* Slightly lighter dark blue */
+  --bg-card: rgba(17, 25, 45, 0.88); /* More opaque, richer card background */
+  --border-color: rgba(59, 130, 246, 0.32); /* Sharper, glowing electric blue border */
+  --border-focus: #3b82f6;     /* Bright blue focus border */
 
   --text-primary: #ffffff;     /* White */
   --text-secondary: #e2e8f0;   /* Light gray/slate */
-  --text-muted: #cbd5e1;       /* Slate 300 */
-  --text-placeholder: #64748b; /* Slate 500 */
+  --text-muted: #94a3b8;       /* Slate 400 */
+  --text-placeholder: #475569; /* Slate 600 */
 
-  --accent-color: #818cf8;
-  --accent-light: #a5b4fc;
-  --accent-gradient: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+  --accent-color: #3b82f6;
+  --accent-light: #60a5fa;
+  --accent-gradient: linear-gradient(135deg, #1d4ed8 0%, #06b6d4 100%); /* Sapphire to Cyan gradient */
 
   /* Dynamic element tokens */
   --price-color: #34d399;      /* Emerald 400 */
-  --badge-bg: rgba(129, 140, 248, 0.15);
-  --badge-color: #c7d2fe;
-  --badge-border: rgba(129, 140, 248, 0.3);
+  --badge-bg: rgba(59, 130, 246, 0.15);
+  --badge-color: #93c5fd;
+  --badge-border: rgba(59, 130, 246, 0.35);
 
   --btn-delete-bg: rgba(239, 68, 68, 0.08);
-  --btn-delete-border: rgba(239, 68, 68, 0.3);
+  --btn-delete-border: rgba(239, 68, 68, 0.35);
   --btn-delete-text: #fca5a5;
 
-  --filter-bg: rgba(129, 140, 248, 0.08);
-  --filter-border: rgba(129, 140, 248, 0.2);
-  --filter-text-span: #c7d2fe;
+  --filter-bg: rgba(59, 130, 246, 0.08);
+  --filter-border: rgba(59, 130, 246, 0.25);
+  --filter-text-span: #93c5fd;
 
-  --bg-item: rgba(255, 255, 255, 0.03);
-  --border-item: rgba(255, 255, 255, 0.05);
-  --bg-item-hover: rgba(255, 255, 255, 0.06);
-  --border-item-hover: rgba(129, 140, 248, 0.25);
+  --bg-item: rgba(255, 255, 255, 0.04);
+  --border-item: rgba(59, 130, 246, 0.15);
+  --bg-item-hover: rgba(255, 255, 255, 0.09);
+  --border-item-hover: rgba(59, 130, 246, 0.4);
 
-  --bg-input: #1f213a;         /* Twilight inputs */
-  --border-input: rgba(255, 255, 255, 0.12);
-  --bg-input-focus: #272a4b;
+  --bg-input: #060913;         /* Dark inputs */
+  --border-input: rgba(59, 130, 246, 0.25);
+  --bg-input-focus: #0e1322;
 
-  --scrollbar-thumb: rgba(255, 255, 255, 0.15);
-  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.3);
+  --scrollbar-thumb: rgba(255, 255, 255, 0.2);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.35);
 
   /* Mesh gradient glow strengths */
-  --glow-1: rgba(129, 140, 248, 0.28);
-  --glow-2: rgba(192, 132, 252, 0.24);
-  --glow-3: rgba(129, 140, 248, 0.12);
+  --glow-1: rgba(29, 78, 216, 0.28);
+  --glow-2: rgba(6, 182, 212, 0.22);
+  --glow-3: rgba(29, 78, 216, 0.12);
 
   --danger-color: #ef4444;
   --danger-hover: #dc2626;
@@ -54,62 +54,62 @@
   --radius-md: 12px;
   --radius-sm: 8px;
 
-  --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(255, 255, 255, 0.01);
+  --card-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 20px rgba(59, 130, 246, 0.05);
   --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Inner elements variables */
-  --bg-filters: rgba(0, 0, 0, 0.15);
-  --border-filters: rgba(255, 255, 255, 0.05);
+  --bg-filters: rgba(0, 0, 0, 0.2);
+  --border-filters: rgba(255, 255, 255, 0.08);
   --date-icon-filter: invert(1);
 }
 
 /* Light Mode Overrides */
 :root[data-theme="light"] {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --bg-card: rgba(255, 255, 255, 0.75);
-  --border-color: rgba(0, 0, 0, 0.06);
-  --border-focus: #4f46e5;
+  --bg-primary: #eef2f6;       /* Darker light blue-slate background for contrast */
+  --bg-secondary: #e2ebf0;     /* Slightly darker blue-gray */
+  --bg-card: #ffffff;          /* Pure white cards for maximum pop */
+  --border-color: rgba(59, 130, 246, 0.22); /* Sharper border */
+  --border-focus: #2563eb;
 
   --text-primary: #0f172a;
-  --text-secondary: #475569;
+  --text-secondary: #334155;
   --text-muted: #64748b;
   --text-placeholder: #94a3b8;
 
-  --accent-color: #4f46e5;
-  --accent-light: #6366f1;
-  --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  --accent-color: #2563eb;
+  --accent-light: #3b82f6;
+  --accent-gradient: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
 
   /* Dynamic element tokens */
   --price-color: #059669;      /* Emerald 600 */
-  --badge-bg: rgba(79, 70, 229, 0.07);
-  --badge-color: #4f46e5;
-  --badge-border: rgba(79, 70, 229, 0.15);
+  --badge-bg: rgba(37, 99, 235, 0.08);
+  --badge-color: #2563eb;
+  --badge-border: rgba(37, 99, 235, 0.2);
 
-  --btn-delete-bg: rgba(239, 68, 68, 0.04);
-  --btn-delete-border: rgba(239, 68, 68, 0.2);
+  --btn-delete-bg: rgba(239, 68, 68, 0.05);
+  --btn-delete-border: rgba(239, 68, 68, 0.25);
   --btn-delete-text: #dc2626;
 
-  --filter-bg: rgba(79, 70, 229, 0.04);
-  --filter-border: rgba(79, 70, 229, 0.1);
-  --filter-text-span: #4f46e5;
+  --filter-bg: rgba(37, 99, 235, 0.06);
+  --filter-border: rgba(37, 99, 235, 0.15);
+  --filter-text-span: #2563eb;
 
-  --bg-item: rgba(255, 255, 255, 0.75);
-  --border-item: rgba(0, 0, 0, 0.06);
-  --bg-item-hover: rgba(255, 255, 255, 0.9);
-  --border-item-hover: rgba(79, 70, 229, 0.2);
+  --bg-item: #f8fafc;          /* Off-white light gray-blue items against white card */
+  --border-item: rgba(59, 130, 246, 0.1);
+  --bg-item-hover: #f1f5f9;    /* Clean hover states */
+  --border-item-hover: rgba(37, 99, 235, 0.3);
 
   --bg-input: #ffffff;
-  --border-input: rgba(0, 0, 0, 0.1);
+  --border-input: rgba(59, 130, 246, 0.2);
   --bg-input-focus: #ffffff;
 
-  --scrollbar-thumb: rgba(0, 0, 0, 0.15);
-  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.25);
+  --scrollbar-thumb: rgba(0, 0, 0, 0.2);
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.3);
 
   /* Mesh gradient glow strengths */
-  --glow-1: rgba(99, 102, 241, 0.05);
-  --glow-2: rgba(168, 85, 247, 0.04);
-  --glow-3: rgba(99, 102, 241, 0.02);
+  --glow-1: rgba(37, 99, 235, 0.05);
+  --glow-2: rgba(8, 145, 178, 0.04);
+  --glow-3: rgba(37, 99, 235, 0.02);
 
   --danger-color: #ef4444;
   --danger-hover: #dc2626;
@@ -118,12 +118,12 @@
   --radius-md: 12px;
   --radius-sm: 8px;
 
-  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.01);
+  --card-shadow: 0 15px 35px -10px rgba(59, 130, 246, 0.12), 0 1px 3px rgba(0, 0, 0, 0.02);
   --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Inner elements variables */
-  --bg-filters: rgba(255, 255, 255, 0.8);
-  --border-filters: rgba(0, 0, 0, 0.06);
+  --bg-filters: rgba(255, 255, 255, 0.9);
+  --border-filters: rgba(59, 130, 246, 0.12);
   --date-icon-filter: none;
 }
 
