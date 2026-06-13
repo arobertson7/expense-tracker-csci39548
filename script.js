@@ -61,6 +61,7 @@ function render() {
     card_header.textContent = expense.description;
 
     const card_amount = document.createElement('p');
+    card_amount.classList.add('individual-expense-amount');
     card_amount.textContent = "$" + getFormattedAmount(expense.amount);
 
     const card_category = document.createElement('p');
@@ -332,6 +333,53 @@ document.addEventListener('DOMContentLoaded', () => {
     amount_input.setSelectionRange(cursorPosition, cursorPosition);
   });
 
+  // *** CURRENCY CONVERSION EVENT LISTENER ***
+  const convert_button = document.getElementById('convert-eur-btn');
+
+  convert_button.addEventListener('click', async (e) => {
+    selected_currency = (selected_currency === "USD") ? "EUR" : "USD";
+    if (selected_currency === "USD") {
+      render(); // defaults to USD
+      convert_button.textContent = "Convert to EUR";
+      return;
+    }
+    // Convert to EUR
+    const conversion_rate_data = await fetchConversionRate();
+    if (conversion_rate_data.length === 0) { // error occurred during fetch
+      
+      return;
+    }
+    const conversion_rate = Number(conversion_rate_data.rates.EUR);
+
+    // Update expense list cards
+    const expense_card_amount_els = document.querySelectorAll('.individual-expense-amount');
+    console.log(expense_card_amount_els);
+    expense_card_amount_els.forEach((amount_el) => {
+      amount_el.textContent = convertDollarToEuroString(amount_el.textContent, conversion_rate);
+    });
+    // Update Filtered Total
+    const filtered_total = document.getElementById('filtered-total');
+    filtered_total.textContent = convertDollarToEuroString(filtered_total.textContent, conversion_rate);
+    // Update Overall and Category Totals
+    const overall_total_el = document.getElementById('overall-total');
+    const food_and_drinks_el = document.getElementById('food-&-drinks-total');
+    const entertainment_el = document.getElementById('entertainment-total');
+    const home_goods_el = document.getElementById('home-goods-total');
+    const travel_el = document.getElementById('travel-total');
+    const payments_el = document.getElementById('payments-total');
+    const other_el = document.getElementById('other-total');
+    overall_total_el.textContent = convertDollarToEuroString(overall_total_el.textContent, conversion_rate);
+    food_and_drinks_el.textContent = convertDollarToEuroString(food_and_drinks_el.textContent, conversion_rate);
+    entertainment_el.textContent = convertDollarToEuroString(entertainment_el.textContent, conversion_rate);
+    home_goods_el.textContent = convertDollarToEuroString(home_goods_el.textContent, conversion_rate);
+    travel_el.textContent = convertDollarToEuroString(travel_el.textContent, conversion_rate);
+    payments_el.textContent = convertDollarToEuroString(payments_el.textContent, conversion_rate);
+    other_el.textContent = convertDollarToEuroString(other_el.textContent, conversion_rate);
+
+    // Toggle button label
+    convert_button.textContent = "Convert to USD";
+  });
+
 });
 
 /*****************************
@@ -352,7 +400,26 @@ function getCategoryTotal(category) {
   }
   return expenses.filter((expense) => expense.category === category)
     .reduce((acc, expense) => acc + expense.amount, 0);
+}
 
+async function fetchConversionRate() {
+  try {
+      const response = await fetch(CONVERSION_API_URL);
+      if (!response.ok) {
+        throw new Error("HTTP " + response.status);
+      }
+      const data = await response.json();
+      return data;
+  } catch (error) {
+      console.error("Error fetching conversion rate: ", error.message);
+      return [];
+  }
+}
+
+function convertDollarToEuroString(dollar_str, conversion_rate) {
+    const cleaned_and_converted = conversion_rate * Number(dollar_str.replace(/[^\d.]/g, ""));
+    const formatted_amount = "€" + getFormattedAmount(cleaned_and_converted);
+    return formatted_amount;
 }
 
 /*****************************
@@ -360,6 +427,8 @@ function getCategoryTotal(category) {
 **************************** */
 
 const STORAGE_KEY = "expense_list";
+const CONVERSION_API_URL = "https://api.exchangerate-api.com/v4/latest/USD";
+let selected_currency = "USD";
 
 const stored_expenses_JSON = localStorage.getItem(STORAGE_KEY);
 const parsed_expenses_array = stored_expenses_JSON ? JSON.parse(stored_expenses_JSON) : [];
