@@ -13,20 +13,22 @@ class Expense {
 }
 
 class ExpenseTracker {
-  constructor() {
-    this.expense_list = [];
-    this.next_expense_id = 1;
+  constructor(expense_list = [], next_expense_id) {
+    this.expense_list = expense_list;
+    this.next_expense_id = next_expense_id;
   }
 
   // adds to front of expense_list (to render on top of html list) and increments id
   addExpense(description, amount, category, date) {
     this.expense_list.unshift(new Expense(this.next_expense_id++, description, amount, category, date));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(this.expense_list));
     render();
   }
 
   removeExpense(id) {
     // assigns a new array to expense_list excluding the expense with removal id
     this.expense_list = this.expense_list.filter(expense => expense.id !== id);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(this.expense_list));
     render();
   }
 }
@@ -357,11 +359,37 @@ function getCategoryTotal(category) {
   Global Variables
 **************************** */
 
-const expense_tracker = new ExpenseTracker();
+const STORAGE_KEY = "expense_list";
+
+const stored_expenses_JSON = localStorage.getItem(STORAGE_KEY);
+const parsed_expenses_array = stored_expenses_JSON ? JSON.parse(stored_expenses_JSON) : [];
+// Convert JS objs back into Expense objs and properly convert date strings to Date objs
+const expenses_obj_array = parsed_expenses_array.map((item) => new Expense(
+  item.id,
+  item.description,
+  item.amount,
+  item.category,
+  new Date(item.date)
+));
+
+let max_exisiting_id = 0;
+for (const expense of expenses_obj_array) {
+  max_exisiting_id = Math.max(max_exisiting_id, expense.id);
+}
+
+const expense_tracker = new ExpenseTracker(expenses_obj_array, max_exisiting_id + 1);
+render();
+// *** also ExpenseTracker will reset id's to 1 on page load which will cause duplicate id's
+
+
+
+
+
 // dummy data
-expense_tracker.addExpense("Car payment", 200, "payments", new Date("2026-07-1"));
-expense_tracker.addExpense("Groceries", 60, "food-&-drinks", new Date("2026-06-12"));
-expense_tracker.addExpense("Dinner with friend", 20, "food-&-drinks", new Date("2026-06-22"));
-expense_tracker.addExpense("New lamp", 30, "home-goods", new Date("2026-06-14"));
-expense_tracker.addExpense("Knicks tickets", 6000, "entertainment", new Date());
+
+// expense_tracker.addExpense("Car payment", 200, "payments", new Date("2026-07-1"));
+// expense_tracker.addExpense("Groceries", 60, "food-&-drinks", new Date("2026-06-12"));
+// expense_tracker.addExpense("Dinner with friend", 20, "food-&-drinks", new Date("2026-06-22"));
+// expense_tracker.addExpense("New lamp", 30, "home-goods", new Date("2026-06-14"));
+// expense_tracker.addExpense("Knicks tickets", 6000, "entertainment", new Date());
 
