@@ -278,6 +278,23 @@ document.addEventListener('DOMContentLoaded', () => {
     render();
   });
 
+  // *** TOGGLE FORM & LIST LOGIC ***
+  const show_btn_mobile = document.getElementById('show-add-form-btn-mobile');
+  const hide_btn_mobile = document.getElementById('hide-add-form-btn-mobile');
+  const show_btn_desktop = document.getElementById('show-add-form-btn-desktop');
+  const hide_btn_desktop = document.getElementById('hide-add-form-btn-desktop');
+
+  show_btn_mobile.addEventListener('click', showAddExpenseForm);
+  hide_btn_mobile.addEventListener('click', () => {
+    document.getElementById('add-expense-form').reset();
+    showExpenseList();
+  });
+  show_btn_desktop.addEventListener('click', showAddExpenseForm);
+  hide_btn_desktop.addEventListener('click', () => {
+    document.getElementById('add-expense-form').reset();
+    showExpenseList();
+  });
+
   // *** ADD EXPENSE BUTTON LOGIC ***
   const add_button = document.getElementById('add-expense-button');
 
@@ -303,6 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
       add_button.removeAttribute('data-error');
       expense_tracker.addExpense(description_input.value, cleaned_amount_num, category_input.value, new Date(date_input.value));
       document.getElementById('add-expense-form').reset();
+      showExpenseList();
     }
   });
 
@@ -410,6 +428,19 @@ document.addEventListener('DOMContentLoaded', () => {
   Helper functions
 **************************** */
 
+function showAddExpenseForm() {
+  document.getElementById('current-expenses').classList.add('show-form-state');
+  const add_btn_desktop = document.getElementById('show-add-form-btn-desktop');
+  if (add_btn_desktop) add_btn_desktop.removeAttribute('data-error');
+  const add_btn = document.getElementById('add-expense-button');
+  if (add_btn) add_btn.removeAttribute('data-error');
+  document.getElementById('add-expense-date').valueAsDate = new Date();
+}
+
+function showExpenseList() {
+  document.getElementById('current-expenses').classList.remove('show-form-state');
+}
+
 // Input: Number | Output: String | Adds commas and decimal as necessary
 function getFormattedAmount(amount) {
   const decimal_precision = Number.isInteger(amount) ? { minimumFractionDigits: 0, maximumFractionDigits: 0 }
@@ -472,9 +503,9 @@ function renderAmountsInEuros(conversion_rate) {
   other_el.textContent = convertDollarToEuroString(other_el.textContent, conversion_rate);
 }
 
-/*****************************
-  Global Variables
-**************************** */
+/**********************************
+  Global Variables & Initial Setup
+******************************** */
 
 const STORAGE_KEY = "expense_list";
 const CONVERSION_API_URL = "https://api.exchangerate-api.com/v4/latest/USD";
@@ -497,19 +528,9 @@ for (const expense of expenses_obj_array) {
   max_exisiting_id = Math.max(max_exisiting_id, expense.id);
 }
 
+// Instantiate the ExpenseTracker object
 const expense_tracker = new ExpenseTracker(expenses_obj_array, max_exisiting_id + 1);
+
+// Render the expense list
 render();
-// *** also ExpenseTracker will reset id's to 1 on page load which will cause duplicate id's
-
-
-
-
-
-// dummy data
-
-// expense_tracker.addExpense("Car payment", 200, "payments", new Date("2026-07-1"));
-// expense_tracker.addExpense("Groceries", 60, "food-&-drinks", new Date("2026-06-12"));
-// expense_tracker.addExpense("Dinner with friend", 20, "food-&-drinks", new Date("2026-06-22"));
-// expense_tracker.addExpense("New lamp", 30, "home-goods", new Date("2026-06-14"));
-// expense_tracker.addExpense("Knicks tickets", 6000, "entertainment", new Date());
 

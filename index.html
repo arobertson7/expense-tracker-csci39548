@@ -40,61 +40,93 @@
   <!-- MAIN CONTENT -->
   <main>
 
-    <!-- Section: Expense List -->
+    <!-- Section: Expense List & Add Expense Form (Toggle between) -->
     <section id="current-expenses">
-      <h3>Current Expenses</h3>
+      <div class="section-header-mobile">
+        <h3 class="section-title">Current Expenses</h3>
+        <button type="button" id="show-add-form-btn-mobile" class="header-action-btn add-btn mobile-only-btn"
+          aria-label="Add New Expense">
+          <svg class="plus-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>Add Expense</span>
+        </button>
+        <button type="button" id="hide-add-form-btn-mobile" class="header-action-btn back-btn mobile-only-btn"
+          aria-label="Back to Expense List">
+          <svg class="back-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Back to List</span>
+        </button>
+      </div>
+
       <div id="expense-list-container">
+        <div class="list-header-row">
+          <div id="filters-container">
+            <div class="filter-group">
+              <label for="sort-by">Sort By</label>
+              <select name="sort-by" id="sort-by">
+                <option value="">Any</option>
+                <option value="amount-desc">Amount &darr;</option>
+                <option value="amount-asc">Amount &uarr;</option>
+                <option value="date-earliest">Date (Earliest)</option>
+                <option value="date-latest">Date (Latest)</option>
+              </select>
+            </div>
 
-        <div id="filters-container">
-          <div class="filter-group">
-            <label for="sort-by">Sort By</label>
-            <select name="sort-by" id="sort-by">
-              <option value="">Any</option>
-              <option value="amount-desc">Amount &darr;</option>
-              <option value="amount-asc">Amount &uarr;</option>
-              <option value="date-earliest">Date (Earliest)</option>
-              <option value="date-latest">Date (Latest)</option>
-            </select>
-          </div>
-
-          <div class="filter-group">
-            <label>Filter by Category</label>
-            <div class="dropdown" id="category-dropdown">
-              <button type="button" class="dropdown-trigger" id="filter-category-trigger" aria-haspopup="listbox"
-                aria-expanded="false">
-                <span class="dropdown-trigger-text">All Categories</span>
-                <span class="dropdown-arrow">&#x25BC;</span>
-              </button>
-              <div class="dropdown-menu" role="listbox">
-                <button type="button" class="dropdown-all-btn" id="filter-all-btn">All</button>
-                <div class="dropdown-divider"></div>
-                <label class="dropdown-item">
-                  <input type="checkbox" value="food-&-drinks" class="category-checkbox">
-                  <span>Food & Drinks</span>
-                </label>
-                <label class="dropdown-item">
-                  <input type="checkbox" value="entertainment" class="category-checkbox">
-                  <span>Entertainment</span>
-                </label>
-                <label class="dropdown-item">
-                  <input type="checkbox" value="home-goods" class="category-checkbox">
-                  <span>Home Goods</span>
-                </label>
-                <label class="dropdown-item">
-                  <input type="checkbox" value="travel" class="category-checkbox">
-                  <span>Travel</span>
-                </label>
-                <label class="dropdown-item">
-                  <input type="checkbox" value="payments" class="category-checkbox">
-                  <span>Payments</span>
-                </label>
-                <label class="dropdown-item">
-                  <input type="checkbox" value="other" class="category-checkbox">
-                  <span>Other</span>
-                </label>
+            <div class="filter-group">
+              <label>Filter by Category</label>
+              <div class="dropdown" id="category-dropdown">
+                <button type="button" class="dropdown-trigger" id="filter-category-trigger" aria-haspopup="listbox"
+                  aria-expanded="false">
+                  <span class="dropdown-trigger-text">All Categories</span>
+                  <span class="dropdown-arrow">&#x25BC;</span>
+                </button>
+                <div class="dropdown-menu" role="listbox">
+                  <button type="button" class="dropdown-all-btn" id="filter-all-btn">All</button>
+                  <div class="dropdown-divider"></div>
+                  <label class="dropdown-item">
+                    <input type="checkbox" value="food-&-drinks" class="category-checkbox">
+                    <span>Food & Drinks</span>
+                  </label>
+                  <label class="dropdown-item">
+                    <input type="checkbox" value="entertainment" class="category-checkbox">
+                    <span>Entertainment</span>
+                  </label>
+                  <label class="dropdown-item">
+                    <input type="checkbox" value="home-goods" class="category-checkbox">
+                    <span>Home Goods</span>
+                  </label>
+                  <label class="dropdown-item">
+                    <input type="checkbox" value="travel" class="category-checkbox">
+                    <span>Travel</span>
+                  </label>
+                  <label class="dropdown-item">
+                    <input type="checkbox" value="payments" class="category-checkbox">
+                    <span>Payments</span>
+                  </label>
+                  <label class="dropdown-item">
+                    <input type="checkbox" value="other" class="category-checkbox">
+                    <span>Other</span>
+                  </label>
+                </div>
               </div>
             </div>
           </div>
+
+          <button type="button" id="show-add-form-btn-desktop" class="header-action-btn add-btn desktop-only-btn"
+            aria-label="Add New Expense">
+            <svg class="plus-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Add Expense</span>
+          </button>
         </div>
 
         <ul id="expense-list">
@@ -107,13 +139,73 @@
 
       </div>
 
+      <!-- Add Expense Form -->
+      <div id="add-expense">
+        <div class="form-header-row">
+          <h3>Add New Expense</h3>
+          <button type="button" id="hide-add-form-btn-desktop" class="header-action-btn back-btn desktop-only-btn"
+            aria-label="Back to Expense List">
+            <svg class="back-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Back to List</span>
+          </button>
+        </div>
+
+        <form action="#" method="POST" id="add-expense-form">
+          <fieldset>
+            <legend>Expense Details</legend>
+
+            <p>
+              <label for="add-expense-description">Description:</label><br>
+              <input type="text" name="add-expense-description" id="add-expense-description" maxlength="25"
+                placeholder="World Cup Tickets...">
+            </p>
+
+            <p>
+              <!-- type="text" to display currency formatting -->
+              <label for="add-expense-amount">Amount:</label><br>
+              <input type="text" inputmode="decimal" name="add-expense-amount" id="add-expense-amount" maxlength=18
+                placeholder="$50">
+            </p>
+
+            <p>
+              <label for="add-expense-category">Category:</label><br>
+              <select name="add-expense-category" id="add-expense-category-options">
+                <option value="">-- Select Category --</option>
+                <option value="food-&-drinks">Food & Drinks</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="home-goods">Home Goods</option>
+                <option value="travel">Travel</option>
+                <option value="payments">Payments</option>
+                <option value="other">Other</option>
+              </select>
+            </p>
+
+            <p>
+              <label for="add-expense-date">Due Date:</label><br>
+              <input type="date" name="add-expense-date" id="add-expense-date">
+            </p>
+
+          </fieldset>
+
+          <button type="button" id="add-expense-button">Add</button>
+
+        </form>
+
+      </div>
+
       <div id="running-totals-container"> <!-- positioned to the right of the expense list -->
         <button type="button" class="convert-eur-btn" id="convert-eur-btn" data-currency="EUR">
-          <svg class="usd-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="usd-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" x2="12" y1="2" y2="22"></line>
             <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
           </svg>
-          <svg class="euro-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="euro-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 10h12"></path>
             <path d="M4 14h9"></path>
             <path d="M19 6a7.7 7.7 0 0 0-5.2-2A7.9 7.9 0 0 0 6 12a7.9 7.9 0 0 0 7.8 8 7.7 7.7 0 0 0 5.2-2"></path>
@@ -131,53 +223,6 @@
           <li>Other: <span id="other-total">$0</span></li>
         </ul>
       </div>
-
-    </section>
-
-    <!-- Section: Add Expense -->
-    <section id="add-expense">
-      <h3>Add New Expense</h3>
-
-      <form action="#" method="POST" id="add-expense-form">
-        <fieldset>
-          <legend>Expense Details</legend>
-
-          <p>
-            <label for="add-expense-description">Description:</label><br>
-            <input type="text" name="add-expense-description" id="add-expense-description" maxlength="25"
-              placeholder="World Cup Tickets...">
-          </p>
-
-          <p>
-            <!-- type="text" to display currency formatting -->
-            <label for="add-expense-amount">Amount:</label><br>
-            <input type="text" inputmode="decimal" name="add-expense-amount" id="add-expense-amount" maxlength=18
-              placeholder="$50">
-          </p>
-
-          <p>
-            <label for="add-expense-category">Category:</label><br>
-            <select name="add-expense-category" id="add-expense-category-options">
-              <option value="">-- Select Category --</option>
-              <option value="food-&-drinks">Food & Drinks</option>
-              <option value="entertainment">Entertainment</option>
-              <option value="home-goods">Home Goods</option>
-              <option value="travel">Travel</option>
-              <option value="payments">Payments</option>
-              <option value="other">Other</option>
-            </select>
-          </p>
-
-          <p>
-            <label for="add-expense-date">Due Date:</label><br>
-            <input type="date" name="add-expense-date" id="add-expense-date">
-          </p>
-
-        </fieldset>
-
-        <button type="button" id="add-expense-button">Add</button>
-
-      </form>
 
     </section>
 
