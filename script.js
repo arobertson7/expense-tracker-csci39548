@@ -245,6 +245,18 @@ document.addEventListener('DOMContentLoaded', () => {
     cb.addEventListener('change', render);
   });
 
+  // Bind click event to 'All' button inside the filter dropdown
+  const all_button = document.getElementById('filter-all-btn');
+  if (all_button) {
+    all_button.addEventListener('click', () => {
+      checkboxes.forEach((cb) => {
+        cb.checked = false;
+      });
+      updateTriggerText();
+      render();
+    });
+  }
+
   // Initial update
   updateTriggerText();
 
@@ -351,8 +363,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Convert to EUR
     const conversion_rate_data = await fetchConversionRate();
     if (conversion_rate_data.length === 0 // error occurred during fetch
-        || conversion_rate_data.rates === undefined // in case of missing field
-        || conversion_rate_data.rates.EUR === undefined) {
+      || conversion_rate_data.rates === undefined // in case of missing field
+      || conversion_rate_data.rates.EUR === undefined) {
 
       return;
     }
@@ -364,6 +376,10 @@ document.addEventListener('DOMContentLoaded', () => {
     convert_button.querySelector('.btn-text').textContent = "Convert to USD";
     convert_button.setAttribute('data-currency', 'USD');
   });
+
+  // Set form date input to Today's date
+  const date_el = document.getElementById('add-expense-date');
+  date_el.valueAsDate = new Date();
 
 });
 

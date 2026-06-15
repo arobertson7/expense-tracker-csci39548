@@ -1,23 +1,34 @@
 /* Custom variables for a gorgeous modern twilight slate/indigo theme */
 :root {
   /* Deep Sapphire Blue Mode Colors (Default Theme) - High Contrast */
-  --bg-primary: #060913;       /* Deeper cyber black-blue for contrast */
-  --bg-secondary: #0e1322;     /* Slightly lighter dark blue */
-  --bg-card: rgba(17, 25, 45, 0.88); /* More opaque, richer card background */
-  --border-color: rgba(59, 130, 246, 0.32); /* Sharper, glowing electric blue border */
-  --border-focus: #3b82f6;     /* Bright blue focus border */
+  --bg-primary: #060913;
+  /* Deeper cyber black-blue for contrast */
+  --bg-secondary: #0e1322;
+  /* Slightly lighter dark blue */
+  --bg-card: rgba(17, 25, 45, 0.88);
+  /* More opaque, richer card background */
+  --border-color: rgba(59, 130, 246, 0.32);
+  /* Sharper, glowing electric blue border */
+  --border-focus: #3b82f6;
+  /* Bright blue focus border */
 
-  --text-primary: #ffffff;     /* White */
-  --text-secondary: #e2e8f0;   /* Light gray/slate */
-  --text-muted: #94a3b8;       /* Slate 400 */
-  --text-placeholder: #475569; /* Slate 600 */
+  --text-primary: #ffffff;
+  /* White */
+  --text-secondary: #e2e8f0;
+  /* Light gray/slate */
+  --text-muted: #94a3b8;
+  /* Slate 400 */
+  --text-placeholder: #475569;
+  /* Slate 600 */
 
   --accent-color: #3b82f6;
   --accent-light: #60a5fa;
-  --accent-gradient: linear-gradient(135deg, #1d4ed8 0%, #06b6d4 100%); /* Sapphire to Cyan gradient */
+  --accent-gradient: linear-gradient(135deg, #1d4ed8 0%, #06b6d4 100%);
+  /* Sapphire to Cyan gradient */
 
   /* Dynamic element tokens */
-  --price-color: #34d399;      /* Emerald 400 */
+  --price-color: #34d399;
+  /* Emerald 400 */
   --badge-bg: rgba(59, 130, 246, 0.15);
   --badge-color: #93c5fd;
   --badge-border: rgba(59, 130, 246, 0.35);
@@ -35,7 +46,8 @@
   --bg-item-hover: rgba(255, 255, 255, 0.09);
   --border-item-hover: rgba(59, 130, 246, 0.4);
 
-  --bg-input: #060913;         /* Dark inputs */
+  --bg-input: #060913;
+  /* Dark inputs */
   --border-input: rgba(59, 130, 246, 0.25);
   --bg-input-focus: #0e1322;
 
@@ -65,10 +77,14 @@
 
 /* Light Mode Overrides */
 :root[data-theme="light"] {
-  --bg-primary: #eef2f6;       /* Darker light blue-slate background for contrast */
-  --bg-secondary: #e2ebf0;     /* Slightly darker blue-gray */
-  --bg-card: #ffffff;          /* Pure white cards for maximum pop */
-  --border-color: rgba(59, 130, 246, 0.22); /* Sharper border */
+  --bg-primary: #eef2f6;
+  /* Darker light blue-slate background for contrast */
+  --bg-secondary: #e2ebf0;
+  /* Slightly darker blue-gray */
+  --bg-card: #ffffff;
+  /* Pure white cards for maximum pop */
+  --border-color: rgba(59, 130, 246, 0.22);
+  /* Sharper border */
   --border-focus: #2563eb;
 
   --text-primary: #0f172a;
@@ -81,7 +97,8 @@
   --accent-gradient: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
 
   /* Dynamic element tokens */
-  --price-color: #059669;      /* Emerald 600 */
+  --price-color: #059669;
+  /* Emerald 600 */
   --badge-bg: rgba(37, 99, 235, 0.08);
   --badge-color: #2563eb;
   --badge-border: rgba(37, 99, 235, 0.2);
@@ -94,9 +111,11 @@
   --filter-border: rgba(37, 99, 235, 0.15);
   --filter-text-span: #2563eb;
 
-  --bg-item: #f8fafc;          /* Off-white light gray-blue items against white card */
+  --bg-item: #f8fafc;
+  /* Off-white light gray-blue items against white card */
   --border-item: rgba(59, 130, 246, 0.1);
-  --bg-item-hover: #f1f5f9;    /* Clean hover states */
+  --bg-item-hover: #f1f5f9;
+  /* Clean hover states */
   --border-item-hover: rgba(37, 99, 235, 0.3);
 
   --bg-input: #ffffff;
@@ -500,6 +519,41 @@ section h3::after {
   display: flex;
 }
 
+.dropdown-all-btn {
+  display: block;
+  width: 100%;
+  padding: 6px 10px;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--badge-color);
+  background: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.dropdown-all-btn:hover {
+  background: var(--accent-gradient);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
+}
+
+.dropdown-all-btn:active {
+  transform: scale(0.98);
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: 0 6px 6px 6px;
+  opacity: 0.4;
+}
+
 .dropdown-item {
   display: flex;
   align-items: center;
@@ -645,12 +699,15 @@ section h3::after {
 .convert-eur-btn[data-currency="EUR"] .euro-icon {
   display: inline-block;
 }
+
 .convert-eur-btn[data-currency="EUR"] .usd-icon {
   display: none;
 }
+
 .convert-eur-btn[data-currency="USD"] .euro-icon {
   display: none;
 }
+
 .convert-eur-btn[data-currency="USD"] .usd-icon {
   display: inline-block;
 }
@@ -659,7 +716,7 @@ section h3::after {
   #running-totals-container {
     padding: 20px;
   }
-  
+
   .convert-eur-btn {
     top: 20px;
     right: 20px;
