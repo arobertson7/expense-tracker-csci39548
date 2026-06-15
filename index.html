@@ -40,29 +40,30 @@
   <!-- MAIN CONTENT -->
   <main>
 
+    <div class="section-header-mobile">
+      <h3 class="section-title">Current Expenses</h3>
+      <button type="button" id="show-add-form-btn-mobile" class="header-action-btn add-btn mobile-only-btn"
+        aria-label="Add New Expense">
+        <svg class="plus-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+        <span>Add Expense</span>
+      </button>
+      <button type="button" id="hide-add-form-btn-mobile" class="header-action-btn back-btn mobile-only-btn"
+        aria-label="Back to Expense List">
+        <svg class="back-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back to List</span>
+      </button>
+    </div>
+
     <!-- Section: Expense List & Add Expense Form (Toggle between) -->
     <section id="current-expenses">
-      <div class="section-header-mobile">
-        <h3 class="section-title">Current Expenses</h3>
-        <button type="button" id="show-add-form-btn-mobile" class="header-action-btn add-btn mobile-only-btn"
-          aria-label="Add New Expense">
-          <svg class="plus-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-          </svg>
-          <span>Add Expense</span>
-        </button>
-        <button type="button" id="hide-add-form-btn-mobile" class="header-action-btn back-btn mobile-only-btn"
-          aria-label="Back to Expense List">
-          <svg class="back-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-          <span>Back to List</span>
-        </button>
-      </div>
 
       <div id="expense-list-container">
         <div class="list-header-row">
@@ -197,33 +198,34 @@
 
       </div>
 
-      <div id="running-totals-container"> <!-- positioned to the right of the expense list -->
-        <button type="button" class="convert-eur-btn" id="convert-eur-btn" data-currency="EUR">
-          <svg class="usd-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" x2="12" y1="2" y2="22"></line>
-            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-          </svg>
-          <svg class="euro-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 10h12"></path>
-            <path d="M4 14h9"></path>
-            <path d="M19 6a7.7 7.7 0 0 0-5.2-2A7.9 7.9 0 0 0 6 12a7.9 7.9 0 0 0 7.8 8 7.7 7.7 0 0 0 5.2-2"></path>
-          </svg>
-          <span class="btn-text">Convert to EUR</span>
-        </button>
-        <h3>Overall Total: <span id="overall-total">$0</span></h3>
-        <h4>Category Breakdown</h4>
-        <ul>
-          <li>Food & Drinks: <span id="food-&-drinks-total">$0</span></li>
-          <li>Entertainment: <span id="entertainment-total">$0</span></li>
-          <li>Home Goods: <span id="home-goods-total">$0</span></li>
-          <li>Travel: <span id="travel-total">$0</span></li>
-          <li>Payments: <span id="payments-total">$0</span></li>
-          <li>Other: <span id="other-total">$0</span></li>
-        </ul>
-      </div>
+    </section>
 
+    <!-- Section: Overall running totals & breakdown -->
+    <section id="running-totals-container">
+      <button type="button" class="convert-eur-btn" id="convert-eur-btn" data-currency="EUR">
+        <svg class="usd-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" x2="12" y1="2" y2="22"></line>
+          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+        </svg>
+        <svg class="euro-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 10h12"></path>
+          <path d="M4 14h9"></path>
+          <path d="M19 6a7.7 7.7 0 0 0-5.2-2A7.9 7.9 0 0 0 6 12a7.9 7.9 0 0 0 7.8 8 7.7 7.7 0 0 0 5.2-2"></path>
+        </svg>
+        <span class="btn-text">Convert to EUR</span>
+      </button>
+      <h3>Overall Total: <span id="overall-total">$0</span></h3>
+      <h4>Category Breakdown</h4>
+      <ul>
+        <li>Food & Drinks: <span id="food-&-drinks-total">$0</span></li>
+        <li>Entertainment: <span id="entertainment-total">$0</span></li>
+        <li>Home Goods: <span id="home-goods-total">$0</span></li>
+        <li>Travel: <span id="travel-total">$0</span></li>
+        <li>Payments: <span id="payments-total">$0</span></li>
+        <li>Other: <span id="other-total">$0</span></li>
+      </ul>
     </section>
 
   </main>

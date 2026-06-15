@@ -191,7 +191,8 @@ section {
   position: relative;
 }
 
-section h3 {
+section h3,
+.section-title {
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -201,7 +202,8 @@ section h3 {
   letter-spacing: -0.02em;
 }
 
-section h3::after {
+section h3::after,
+.section-title::after {
   content: '';
   position: absolute;
   left: 0;
@@ -263,20 +265,20 @@ section h3::after {
 }
 
 /* When form state is active on parent container */
-#current-expenses.show-form-state #expense-list-container {
+main.show-form-state #expense-list-container {
   display: none;
 }
 
-#current-expenses.show-form-state #add-expense {
+main.show-form-state #add-expense {
   display: block;
 }
 
 /* Form state responsive button overrides */
-#current-expenses.show-form-state #show-add-form-btn-mobile {
+main.show-form-state #show-add-form-btn-mobile {
   display: none;
 }
 
-#current-expenses.show-form-state #hide-add-form-btn-mobile {
+main.show-form-state #hide-add-form-btn-mobile {
   display: inline-flex;
 }
 
@@ -1226,7 +1228,7 @@ footer p {
 
 /* Tablet & Up Layout */
 @media (min-width: 768px) {
-  #current-expenses {
+  main {
     display: grid;
     grid-template-columns: 1.35fr 0.65fr;
     gap: 24px;
@@ -1421,7 +1423,14 @@ footer p {
   }
 
   .section-header-mobile {
-    margin-bottom: 24px;
-    /* Slightly larger gap between header and list container */
+    margin-bottom: -16px;
+    /* Tighter vertical gap on mobile (subtracts from main's 32px flex gap) */
+  }
+
+  #add-expense input[type="date"] {
+    -webkit-appearance: none;
+    appearance: none;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
