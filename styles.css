@@ -1029,11 +1029,15 @@ section h3::after {
   padding: 16px;
   box-shadow: var(--card-shadow);
   height: fit-content;
+  min-width: 0;
+  max-width: 100%;
 }
 
 #add-expense form {
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  max-width: 100%;
 }
 
 #add-expense fieldset {
@@ -1043,6 +1047,9 @@ section h3::after {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  min-width: 0;
+  min-inline-size: 0;
+  max-width: 100%;
 }
 
 #add-expense legend {
@@ -1075,7 +1082,10 @@ section h3::after {
 #add-expense input[type="number"],
 #add-expense input[type="date"],
 #add-expense select {
+  display: block;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   padding: 12px 16px;
   font-family: inherit;
   font-size: 0.95rem;
