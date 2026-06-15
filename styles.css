@@ -433,12 +433,13 @@ section h3::after {
 /* Filters & Sorting Controls */
 #filters-container {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 8px;
   background: var(--bg-filters);
   border: 1px solid var(--border-filters);
   border-radius: var(--radius-md);
-  padding: 12px 16px;
+  padding: 8px 10px;
   width: 100%;
   position: relative;
   z-index: 10;
@@ -447,8 +448,8 @@ section h3::after {
 
 @media (min-width: 576px) {
   #filters-container {
-    flex-direction: row;
-    align-items: flex-end;
+    gap: 12px;
+    padding: 12px 16px;
     align-self: flex-start;
     width: 50%;
     min-width: 350px;
@@ -458,22 +459,38 @@ section h3::after {
 .filter-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   flex: 1;
-  min-width: 150px;
+  min-width: 0;
+}
+
+@media (min-width: 576px) {
+  .filter-group {
+    gap: 6px;
+    min-width: 150px;
+  }
 }
 
 .filter-group label {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 576px) {
+  .filter-group label {
+    font-size: 0.8rem;
+  }
 }
 
 .filter-group select {
   width: 100%;
-  padding: 8px 12px;
+  padding: 6px 24px 6px 8px;
   font-family: inherit;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--text-primary);
   background: var(--bg-input);
   border: 1px solid var(--border-input);
@@ -486,9 +503,17 @@ section h3::after {
   /* custom svg arrow which css draws on the fly */
   background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 12px;
-  padding-right: 32px;
+  background-position: right 8px center;
+  background-size: 10px;
+}
+
+@media (min-width: 576px) {
+  .filter-group select {
+    padding: 8px 32px 8px 12px;
+    font-size: 0.85rem;
+    background-position: right 12px center;
+    background-size: 12px;
+  }
 }
 
 .filter-group select:focus {
@@ -507,9 +532,9 @@ section h3::after {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 12px;
+  padding: 6px 8px;
   font-family: inherit;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--text-primary);
   background: var(--bg-input);
@@ -521,16 +546,31 @@ section h3::after {
   text-align: left;
 }
 
+@media (min-width: 576px) {
+  .dropdown-trigger {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+}
+
 .dropdown-trigger:focus,
 .dropdown.open .dropdown-trigger {
   border-color: var(--border-focus);
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
+.dropdown-trigger-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 4px;
+}
+
 .dropdown-arrow {
   font-size: 0.7rem;
   color: var(--text-muted);
   transition: transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .dropdown.open .dropdown-arrow {
