@@ -429,7 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
 **************************** */
 
 function showAddExpenseForm() {
-  document.getElementById('current-expenses').classList.add('show-form-state');
+  document.querySelector('main').classList.add('show-form-state');
   const add_btn_desktop = document.getElementById('show-add-form-btn-desktop');
   if (add_btn_desktop) add_btn_desktop.removeAttribute('data-error');
   const add_btn = document.getElementById('add-expense-button');
@@ -438,7 +438,7 @@ function showAddExpenseForm() {
 }
 
 function showExpenseList() {
-  document.getElementById('current-expenses').classList.remove('show-form-state');
+  document.querySelector('main').classList.remove('show-form-state');
 }
 
 // Input: Number | Output: String | Adds commas and decimal as necessary
