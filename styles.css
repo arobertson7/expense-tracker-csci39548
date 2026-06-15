@@ -1,34 +1,22 @@
 /* Custom variables for a gorgeous modern twilight slate/indigo theme */
 :root {
-  /* Deep Sapphire Blue Mode Colors (Default Theme) - High Contrast */
   --bg-primary: #060913;
-  /* Deeper cyber black-blue for contrast */
   --bg-secondary: #0e1322;
-  /* Slightly lighter dark blue */
   --bg-card: rgba(17, 25, 45, 0.88);
-  /* More opaque, richer card background */
   --border-color: rgba(59, 130, 246, 0.32);
-  /* Sharper, glowing electric blue border */
   --border-focus: #3b82f6;
-  /* Bright blue focus border */
 
   --text-primary: #ffffff;
-  /* White */
   --text-secondary: #e2e8f0;
-  /* Light gray/slate */
   --text-muted: #94a3b8;
-  /* Slate 400 */
   --text-placeholder: #475569;
-  /* Slate 600 */
 
   --accent-color: #3b82f6;
   --accent-light: #60a5fa;
   --accent-gradient: linear-gradient(135deg, #1d4ed8 0%, #06b6d4 100%);
-  /* Sapphire to Cyan gradient */
 
   /* Dynamic element tokens */
   --price-color: #34d399;
-  /* Emerald 400 */
   --badge-bg: rgba(59, 130, 246, 0.15);
   --badge-color: #93c5fd;
   --badge-border: rgba(59, 130, 246, 0.35);
@@ -47,14 +35,12 @@
   --border-item-hover: rgba(59, 130, 246, 0.4);
 
   --bg-input: #060913;
-  /* Dark inputs */
   --border-input: rgba(59, 130, 246, 0.25);
   --bg-input-focus: #0e1322;
 
   --scrollbar-thumb: rgba(255, 255, 255, 0.2);
   --scrollbar-thumb-hover: rgba(255, 255, 255, 0.35);
 
-  /* Mesh gradient glow strengths */
   --glow-1: rgba(29, 78, 216, 0.28);
   --glow-2: rgba(6, 182, 212, 0.22);
   --glow-3: rgba(29, 78, 216, 0.12);
@@ -78,13 +64,9 @@
 /* Light Mode Overrides */
 :root[data-theme="light"] {
   --bg-primary: #eef2f6;
-  /* Darker light blue-slate background for contrast */
   --bg-secondary: #e2ebf0;
-  /* Slightly darker blue-gray */
   --bg-card: #ffffff;
-  /* Pure white cards for maximum pop */
   --border-color: rgba(59, 130, 246, 0.22);
-  /* Sharper border */
   --border-focus: #2563eb;
 
   --text-primary: #0f172a;
@@ -98,7 +80,6 @@
 
   /* Dynamic element tokens */
   --price-color: #059669;
-  /* Emerald 600 */
   --badge-bg: rgba(37, 99, 235, 0.08);
   --badge-color: #2563eb;
   --badge-border: rgba(37, 99, 235, 0.2);
@@ -112,10 +93,8 @@
   --filter-text-span: #2563eb;
 
   --bg-item: #f8fafc;
-  /* Off-white light gray-blue items against white card */
   --border-item: rgba(59, 130, 246, 0.1);
   --bg-item-hover: #f1f5f9;
-  /* Clean hover states */
   --border-item-hover: rgba(37, 99, 235, 0.3);
 
   --bg-input: #ffffff;
@@ -231,6 +210,127 @@ section h3::after {
   height: 3px;
   background: var(--accent-gradient);
   border-radius: 2px;
+}
+
+/* Responsive Button Toggles and Toggling Layout */
+.mobile-only-btn {
+  display: inline-flex;
+}
+
+.desktop-only-btn {
+  display: none !important;
+}
+
+.section-header-mobile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.section-header-mobile h3 {
+  margin-bottom: 0;
+}
+
+.list-header-row {
+  width: 100%;
+}
+
+.form-header-row {
+  display: none;
+  /* Hidden on mobile */
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.form-header-row h3 {
+  margin-bottom: 0;
+  display: inline-block;
+}
+
+/* Toggle Views default visibility */
+#add-expense {
+  display: none;
+  /* Hidden by default */
+}
+
+#hide-add-form-btn-mobile {
+  display: none;
+  /* Hidden by default */
+}
+
+/* When form state is active on parent container */
+#current-expenses.show-form-state #expense-list-container {
+  display: none;
+}
+
+#current-expenses.show-form-state #add-expense {
+  display: block;
+}
+
+/* Form state responsive button overrides */
+#current-expenses.show-form-state #show-add-form-btn-mobile {
+  display: none;
+}
+
+#current-expenses.show-form-state #hide-add-form-btn-mobile {
+  display: inline-flex;
+}
+
+/* Header Buttons styling */
+.header-action-btn {
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1;
+}
+
+/* Add Button style */
+.header-action-btn.add-btn {
+  color: var(--badge-color);
+  background: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+}
+
+.header-action-btn.add-btn:hover {
+  background: var(--accent-gradient);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+  transform: translateY(-1.5px);
+}
+
+.header-action-btn.add-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Back Button style */
+.header-action-btn.back-btn {
+  background: var(--bg-item);
+  border: 1px solid var(--border-item);
+  color: var(--text-secondary);
+}
+
+.header-action-btn.back-btn:hover {
+  background: var(--bg-item-hover);
+  color: var(--text-primary);
+  border-color: var(--border-item-hover);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+  transform: translateY(-1.5px);
+}
+
+.header-action-btn.back-btn:active {
+  transform: translateY(0) scale(0.98);
 }
 
 /* Expense List Container styling */
@@ -433,12 +533,13 @@ section h3::after {
 /* Filters & Sorting Controls */
 #filters-container {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 8px;
   background: var(--bg-filters);
   border: 1px solid var(--border-filters);
   border-radius: var(--radius-md);
-  padding: 12px 16px;
+  padding: 8px 10px;
   width: 100%;
   position: relative;
   z-index: 10;
@@ -447,8 +548,8 @@ section h3::after {
 
 @media (min-width: 576px) {
   #filters-container {
-    flex-direction: row;
-    align-items: flex-end;
+    gap: 12px;
+    padding: 12px 16px;
     align-self: flex-start;
     width: 50%;
     min-width: 350px;
@@ -458,22 +559,38 @@ section h3::after {
 .filter-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   flex: 1;
-  min-width: 150px;
+  min-width: 0;
+}
+
+@media (min-width: 576px) {
+  .filter-group {
+    gap: 6px;
+    min-width: 150px;
+  }
 }
 
 .filter-group label {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 576px) {
+  .filter-group label {
+    font-size: 0.8rem;
+  }
 }
 
 .filter-group select {
   width: 100%;
-  padding: 8px 12px;
+  padding: 6px 24px 6px 8px;
   font-family: inherit;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--text-primary);
   background: var(--bg-input);
   border: 1px solid var(--border-input);
@@ -486,9 +603,17 @@ section h3::after {
   /* custom svg arrow which css draws on the fly */
   background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 12px;
-  padding-right: 32px;
+  background-position: right 8px center;
+  background-size: 10px;
+}
+
+@media (min-width: 576px) {
+  .filter-group select {
+    padding: 8px 32px 8px 12px;
+    font-size: 0.85rem;
+    background-position: right 12px center;
+    background-size: 12px;
+  }
 }
 
 .filter-group select:focus {
@@ -507,9 +632,9 @@ section h3::after {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 12px;
+  padding: 6px 8px;
   font-family: inherit;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--text-primary);
   background: var(--bg-input);
@@ -521,16 +646,31 @@ section h3::after {
   text-align: left;
 }
 
+@media (min-width: 576px) {
+  .dropdown-trigger {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+}
+
 .dropdown-trigger:focus,
 .dropdown.open .dropdown-trigger {
   border-color: var(--border-focus);
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
+.dropdown-trigger-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 4px;
+}
+
 .dropdown-arrow {
   font-size: 0.7rem;
   color: var(--text-muted);
   transition: transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .dropdown.open .dropdown-arrow {
@@ -886,7 +1026,7 @@ section h3::after {
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
-  padding: 28px;
+  padding: 16px;
   box-shadow: var(--card-shadow);
   height: fit-content;
 }
@@ -971,7 +1111,7 @@ section h3::after {
 }
 
 /* Add Button Styling */
-#add-expense button {
+#add-expense-button {
   width: 100%;
   margin-top: 24px;
   padding: 12px 24px;
@@ -992,7 +1132,7 @@ section h3::after {
   position: relative;
 }
 
-#add-expense button::before {
+#add-expense-button::before {
   content: '+';
   font-size: 1.2rem;
   line-height: 1;
@@ -1000,7 +1140,7 @@ section h3::after {
 }
 
 /* Error pseudo-element */
-#add-expense button::after {
+#add-expense-button::after {
   content: attr(data-error);
   position: absolute;
   left: 0;
@@ -1015,23 +1155,27 @@ section h3::after {
   transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#add-expense button[data-error]::after {
+#add-expense-button[data-error]::after {
   opacity: 1;
   transform: translateY(0);
 }
 
-#add-expense button:hover {
+#add-expense-button[data-error] {
+  margin-bottom: 28px;
+}
+
+#add-expense-button:hover {
   transform: translateY(-1.25px);
   box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3), 0 3px 8px rgba(79, 70, 229, 0.15);
   filter: brightness(1.05);
 }
 
-#add-expense button:active {
+#add-expense-button:active {
   transform: translateY(0) scale(0.98);
   box-shadow: 0 2px 6px rgba(79, 70, 229, 0.2);
 }
 
-#add-expense button:focus-visible {
+#add-expense-button:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4), 0 4px 12px rgba(79, 70, 229, 0.2);
 }
@@ -1079,7 +1223,7 @@ footer p {
     align-items: start;
   }
 
-  #current-expenses h3 {
+  .section-header-mobile {
     grid-column: 1 / -1;
     margin-bottom: 0;
   }
@@ -1135,6 +1279,10 @@ footer p {
     border-radius: var(--radius-sm);
   }
 
+  #add-expense {
+    padding: 24px;
+  }
+
   #add-expense fieldset {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1fr;
@@ -1146,21 +1294,42 @@ footer p {
     grid-column: 1 / -1;
   }
 
-  #add-expense button {
+  #add-expense-button {
     width: auto;
     min-width: 160px;
     align-self: flex-start;
-    margin-top: 24px;
+    margin-top: 20px;
+    margin-bottom: 0;
   }
 
-  #add-expense button::after {
+  #add-expense-button::after {
     left: calc(100% + 16px);
     top: 50%;
     transform: translateY(-50%) translateX(-8px);
   }
 
-  #add-expense button[data-error]::after {
+  #add-expense-button[data-error]::after {
     transform: translateY(-50%) translateX(0);
+  }
+
+  .mobile-only-btn {
+    display: none !important;
+  }
+
+  .desktop-only-btn {
+    display: inline-flex !important;
+  }
+
+  .list-header-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .form-header-row {
+    display: flex;
   }
 }
 
@@ -1232,4 +1401,17 @@ footer p {
 :root[data-theme="light"] .theme-toggle-btn .moon-icon {
   opacity: 0;
   transform: rotate(-90deg) scale(0.5);
+}
+
+/* Mobile-only spacing adjustments */
+@media (max-width: 767px) {
+  header {
+    padding-bottom: 44px;
+    /* Slightly larger gap between header and main */
+  }
+
+  .section-header-mobile {
+    margin-bottom: 24px;
+    /* Slightly larger gap between header and list container */
+  }
 }
