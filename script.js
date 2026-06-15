@@ -125,7 +125,7 @@ function render() {
     const no_expenses_message = document.createElement('p');
     no_expenses_message.classList.add('empty-state-text');
     no_expenses_message.textContent = filter_applied ? "No expenses matching these filters!"
-                                                     : "Your expense list is empty. Add a new expense!";
+      : "Your expense list is empty. Add a new expense!";
     no_expenses_message_container.appendChild(no_expenses_message);
     expense_list_el.appendChild(no_expenses_message_container);
   }
@@ -373,11 +373,21 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     // Convert to EUR
+    convert_button.querySelector('.btn-text').textContent = "Converting...";
+    convert_button.disabled = true;
     const conversion_rate_data = await fetchConversionRate();
     if (conversion_rate_data.length === 0 // error occurred during fetch
       || conversion_rate_data.rates === undefined // in case of missing field
       || conversion_rate_data.rates.EUR === undefined) {
 
+      convert_button.setAttribute('data-error', 'Conversion failed. Try again.');
+      convert_button.querySelector('.btn-text').textContent = "Convert to EUR";
+      convert_button.setAttribute('data-currency', 'EUR');
+      selected_currency = "USD";
+      setTimeout(() => {
+        convert_button.removeAttribute('data-error');
+        convert_button.disabled = false;
+      }, 2000);
       return;
     }
     const conversion_rate = Number(conversion_rate_data.rates.EUR);
@@ -387,6 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Toggle button label
     convert_button.querySelector('.btn-text').textContent = "Convert to USD";
     convert_button.setAttribute('data-currency', 'USD');
+    convert_button.disabled = false;
   });
 
   // Set form date input to Today's date
