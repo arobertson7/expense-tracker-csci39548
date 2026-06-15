@@ -118,6 +118,18 @@ function render() {
   payments_el.textContent = "$" + getFormattedAmount(getCategoryTotal("payments"));
   other_el.textContent = "$" + getFormattedAmount(getCategoryTotal("other"));
 
+  // * HANDLE CASE OF NO EXPENSES *
+  if (filtered_expense_list.length === 0) {
+    const no_expenses_message_container = document.createElement('div');
+    no_expenses_message_container.classList.add('empty-state-container');
+    const no_expenses_message = document.createElement('p');
+    no_expenses_message.classList.add('empty-state-text');
+    no_expenses_message.textContent = filter_applied ? "No expenses matching these filters!"
+                                                     : "Your expense list is empty. Add a new expense!";
+    no_expenses_message_container.appendChild(no_expenses_message);
+    expense_list_el.appendChild(no_expenses_message_container);
+  }
+
   if (selected_currency === "EUR") {
     renderAmountsInEuros(cached_conversion_rate);
   }
