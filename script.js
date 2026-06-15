@@ -309,7 +309,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (description_input.value === "") {
       add_button.setAttribute('data-error', 'Please include a description.');
     } else if (amount_input.value === "" || cleaned_amount_num <= 0) {
-      console.log(cleaned_amount_num)
       add_button.setAttribute('data-error', 'Please include an amount greater than $0');
     } else if (category_input.value === "") {
       add_button.setAttribute('data-error', 'Please select a category for this expense.');
